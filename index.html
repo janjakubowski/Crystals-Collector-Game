@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-us">>
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Crystal Collector Game</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  
+  <!-- Linking my CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  
+	<!-- Linking jQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    
+</head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Welcome to the game -->
+      <div id="theWelcome">
+          <h1 class="info">Welcome to Jan's Homework #4</h1>
+          <h1 class="info">This is the Crystal Collecting Game</h1>
+          <h1 class="info">Your challenge is to collect birthstones</h1>
+          <h1 class="info">until the value you have collected exactly match the Jackpot</h1>
+          <h1 class="info">match the Jackpot</h1>
+          <h1 class="info">Pick A Birthstone To Begin</h1>
+      </div>
+
+      <div class="scoreboard" id="theScore">
+          <div class="scoreboard-element" id="wins-txt">Wins: <div id="W"></div></div>
+          <div class="scoreboard-element" id="loses-txt">Losses: <div id="L"></div></div>
+          <div class="scoreboard-element" id="userMessage1-txt">message 1</div>
+          <div class="scoreboard-element" id="userMessage2-txt">message 2</div>
+      </div>
+
+
+      <!-- <div id="theEndOfGame">
+          <img id="animated-gif" height="300" width="100%">
+      </div> -->
+      
+      <div id="theGame">
+          <div id="winningTotal"></div>
+          <div id="gemCards"></div>
+          <!-- <row id="gameBoard"> -->
+              <!-- <button id="gem_0" class="btn gem" value="0"><span>?</span></button> -->
+              <!-- <button id="gem_1" class="btn gem" value="0"><span>?</span></button> -->
+              <!-- <button id="gem_2" class="btn gem" value="0"><span>?</span></button> -->
+              <!-- <button id="gem_3" class="btn gem" value="0"><span>?</span></button> -->
+          <!-- </row> -->
+          <div id="runningTotal"></div>
+      </div>
+
+
+    
+
+
+    </div>
+
+
+  <script type="text/javascript" src="assets/javascript/game.js"></script>
+
+
+  </body>
+
+</html>
