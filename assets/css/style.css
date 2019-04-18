@@ -63,7 +63,7 @@ button > span {
 }
 
 .gem {
-  width: 275px;
+  width: 20vw;
   height: 200px;
   border-style: solid;
   padding: 2px;
@@ -84,8 +84,6 @@ button > span {
 }
 
 #runningTotalDiv {
-  color: #ccc;
-  background-color: darkslateblue;
   border: #ccc, 20px, solid;
   border-radius: 25px;
   /* background: #73AD21; */
@@ -94,6 +92,21 @@ button > span {
   height: 300px; */
   font-size: 60px;
   line-height: 72px;
+}
+
+.normalColor {
+  color: #ccc;
+  background-color: darkslateblue;
+}
+
+.winnerColor {
+  color: #111;
+  background-color: lawngreen;
+}
+
+.loserColor {
+  color: #eee;
+  background-color: red;
 }
 
 /* .totals-div {

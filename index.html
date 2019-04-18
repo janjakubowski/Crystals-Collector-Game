@@ -42,6 +42,12 @@
       
       </div>
 
+      <div>
+        <button id="newGame" type="button" class="btn btn-success btn-lg btn-block">
+          Start New Game
+        </button>
+      </div>
+
       <div class="row" id="theScore">
           <div class="col-md-6" id="wins-txt">
             <row class="scoreboard-element "><p>Wins:</p></row>
@@ -51,8 +57,8 @@
               <row class="scoreboard-element "><p>Losses:</p></row>
               <row class="scoreboard-element "><div id="L">00</div></row>
           </div> 
-          <div class="scoreboard-element col-md-12" id="userMessage1-txt">message 1</div>
-          <div class="scoreboard-element col-md-12" id="userMessage2-txt">message 2</div>
+          <div class="scoreboard-element col-md-12" id="userMsg1">message 1</div>
+          <div class="scoreboard-element col-md-12" id="userMsg2">message 2</div>
       </div>
 
       <!-- <div id="theEndOfGame">
@@ -64,7 +70,7 @@
             <div id="gemCards" class="btn-group btn-group-vertical"></div>
             
           </row>
-          <br>
+          <!-- <br> -->
           <!-- <row id="gameBoard"> -->
               <!-- <button id="gem_0" class="btn gem" value="0"><span>?</span></button> -->
               <!-- <button id="gem_1" class="btn gem" value="0"><span>?</span></button> -->
@@ -77,7 +83,7 @@
                 <p>Jackpot</p>
                 <p id="winningDollars"></p>
             </div>
-            <div class="col-md-6" id="runningTotalDiv">
+            <div class="col-md-6 normalColor" id="runningTotalDiv" >
                 <p>Your Total</p>
                 <p id="runningDollars"></p>
             </div>
