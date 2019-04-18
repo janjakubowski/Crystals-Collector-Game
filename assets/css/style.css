@@ -1,13 +1,20 @@
 /* style.css : stylesheet for crystals collecting game*/
 /* Jan Jakubowski - 15.apr.19            */
+@font-face {
+  src: url(../fonts/scoreboard.ttf);
+  font-family: 'scoreboard font';
+}
+
 * {
   font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 16px;
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+  /* font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; */
+  font-family: 'Luckiest Guy', cursive;
   font-weight: bold;
+  text-align: center;
 }
 
 body, html {
@@ -16,8 +23,39 @@ body, html {
 }
 
 body {
-  /* background-color: lawngreen; */
-  background: url(../images/clouds.jpeg);
+  /* background-color: #B3C7E8; */
+  background: url(../images/clouds.jpeg) bottom;
+  background-size: cover;
+}
+
+.container {
+  min-width: 50vw;
+}
+
+#nameOfTheGame {
+  font-size: 60px;
+}
+
+.info {
+  font-family: 'Russo One', sans-serif;
+}
+
+#theScore {
+  background-color: #333333;
+  color: orangered;
+}
+
+.scoreboard-element {
+  font-family: 'scoreboard font';
+  font-size: 50px;
+  line-height: 62px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#W, #L {
+  font-size: 100px;
+  line-height: 112px;
 }
 
 button > span {
@@ -25,22 +63,47 @@ button > span {
 }
 
 .gem {
-  width: 100px;
-  height: 100px;
+  width: 275px;
+  height: 200px;
   border-style: solid;
   padding: 2px;
   float: left;
   margin: 2px;
 }
 
-.gem-button-color {
+#winningTotalDiv {
   background-color: #ccc;
   color: darkslateblue;
+  border-radius: 25px;
+  /* background: #73AD21; */
+  padding: 20px; 
+  /* width: 50vw;
+  height: 300px; */
+  font-size: 60px;
+  line-height: 72px;
 }
 
-.used-button-color-used {
+#runningTotalDiv {
   color: #ccc;
   background-color: darkslateblue;
+  border: #ccc, 20px, solid;
+  border-radius: 25px;
+  /* background: #73AD21; */
+  padding: 20px; 
+  /* width: 50vw;
+  height: 300px; */
+  font-size: 60px;
+  line-height: 72px;
 }
+
+/* .totals-div {
+  border-radius: 25px; */
+  /* background: #73AD21; */
+  /* padding: 20px; 
+  width: 200px;
+  height: 150px;
+  font-size: 100px;
+  line-height: 112px;
+} */
 
 /* END OF FILE */

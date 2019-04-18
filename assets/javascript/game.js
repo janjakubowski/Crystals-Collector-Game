@@ -20,12 +20,16 @@ var gems = [];
 var gemValue = 0;
 var startNextGame = false;
 var runningTotal = 0;
-let images = ["darkslateblue","lawngreen","orangered","powderblue","blueviolet","blue","yellow"];
+let images = ["feb-amethyst","mar-aquamarine","apr-diamond","aug-peridot"];
 // function gemCard(x,y,z) {
 //     this.name = x;
 //     this.value = y;
 //     this.image = z;
 // }
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+const scoreboardDiv = $(".scoreboard");
 var cardGemValue = -1;
 var image = "#000";
 function getNumber () { return (Math.floor(Math.random() * images.length)) };
@@ -35,28 +39,20 @@ function nextGame () {
     for (i=0; i < 4; i++) {
         var gemButton = $("<button>");
         gemButton.attr("data-x", Math.floor((Math.random()*12) + 1));
-        // gems[i] = new gemCard('"gem_'+i+'"',
-                    // Math.floor((Math.random()*12) + 1),
-                    // images[Math.floor(Math.random() * images.length)]);
-        // console.log("name:"+gems[i].name +" | value:" +gems[i].value +" | image:"+gems[i].image);
-        // $(gems[i]).attr("data-x", gems[i].value);
-        var xxx=$(gemButton).attr("data-x");
-        console.log("i:"+i+ " | x:",xxx);
         gemButton.addClass("gem-button gem gem-button-color");
-        var random = Math.floor(Math.random() * images.length);
-        console.log("random: " + random + " | images: " + images[random]);
-        // gemButton.css("background","url(assets/images/a.png");
-        gemButton.css("background-color",images[random]);
+        gemButton.html('<img src="assets/images/' + images[i] + '.png">')
+        // gemButton.css("background-color",images[Math.floor(Math.random() * images.length)]);
+        gemButton.css("background-color","#f0f0f0");
         $("#gemCards").append(gemButton);
-        // $(gems[i]).addClass("used-button-color-used");
+        // console.log("name:"+gems[i].name +" | value:" +gems[i].value +" | image:"+gems[i].image);
     }
-    // // gem2 = new gemCard('gem-2',0,'x000');
-    // // $("gem_1").attr("data-letter", gem1.value);
-    // // $("gem_1").css("background-color", gem1.image);
-    // // gem3 = new gemCard('gem-3',0,'x000');
-    // // gem4 = new gemCard('gem-4',0,'x000');
+    
     winningTotal = Math.floor(Math.random()*101) + 19;
+    // winningDollars = winningTotal * 10000;
+    console.log("winningDollars: " + (winningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
+    $("#winningDollars").text((winningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
     runningTotal = 0;
+    $("#runningDollars").text((runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
     startNewGame = false;
     
 }
@@ -74,9 +70,6 @@ function nextGame () {
 $(document).ready(function() {
 
     $(".gem").on("click", function() {
-
-        // gemValue = $(this).value();
-        // console.log("gem.name ""gemValue: " + gemValue);
 
         // console.log("startNextGame: " + startNextGame);
         if (startNextGame) {
@@ -96,6 +89,7 @@ $(document).ready(function() {
         
 
         runningTotal += parseInt(gemValue);
+        $("#runningDollars").text((runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
         console.log("runningTotal: " + runningTotal);
 
         if (runningTotal == winningTotal)  {
