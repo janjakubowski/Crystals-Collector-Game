@@ -47,15 +47,15 @@ body {
 
 .scoreboard-element {
   font-family: 'scoreboard font';
-  font-size: 50px;
-  line-height: 62px;
+  font-size: 40px;
+  line-height: 50px;
   font-weight: bold;
   text-align: center;
 }
 
 #W, #L {
-  font-size: 100px;
-  line-height: 112px;
+  font-size: 75px;
+  line-height: 85px;
 }
 
 button > span {
@@ -63,7 +63,7 @@ button > span {
 }
 
 .gem {
-  width: 20vw;
+  width: 266px;
   height: 200px;
   border-style: solid;
   padding: 2px;

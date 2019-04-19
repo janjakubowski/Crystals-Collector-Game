@@ -46,16 +46,19 @@
         <button id="newGame" type="button" class="btn btn-success btn-lg btn-block">
           Start New Game
         </button>
+        <button id="playOver" type="button" class="btn btn-primary btn-lg btn-block">
+            Play Over
+        <button>
       </div>
 
       <div class="row" id="theScore">
           <div class="col-md-6" id="wins-txt">
             <row class="scoreboard-element "><p>Wins:</p></row>
-            <row class="scoreboard-element "><div id="W">00</div></row>
+            <row class="scoreboard-element "><div id="W">0</div></row>
           </div>
           <div class="col-md-6" id="loses-txt">
               <row class="scoreboard-element "><p>Losses:</p></row>
-              <row class="scoreboard-element "><div id="L">00</div></row>
+              <row class="scoreboard-element "><div id="L">0</div></row>
           </div> 
           <div class="scoreboard-element col-md-12" id="userMsg1">message 1</div>
           <div class="scoreboard-element col-md-12" id="userMsg2">message 2</div>
@@ -66,26 +69,24 @@
       </div> -->
       
       <div id="theGame">
-          <row>
-            <div id="gemCards" class="btn-group btn-group-vertical"></div>
-            
-          </row>
-          <!-- <br> -->
-          <!-- <row id="gameBoard"> -->
-              <!-- <button id="gem_0" class="btn gem" value="0"><span>?</span></button> -->
-              <!-- <button id="gem_1" class="btn gem" value="0"><span>?</span></button> -->
-              <!-- <button id="gem_2" class="btn gem" value="0"><span>?</span></button> -->
-              <!-- <button id="gem_3" class="btn gem" value="0"><span>?</span></button> -->
+          <!-- <row> -->
+          <!-- <div id="gemCards" class="btn-group"></div>  -->
           <!-- </row> -->
+          <row id="gameBoard">
+              <button id="gem_0" class="btn gem" ><img src="assets/images/feb-amethyst.png"></button>
+              <button id="gem_1" class="btn gem" ><img src="assets/images/mar-aquamarine.png"></button>
+              <button id="gem_2" class="btn gem" ><img src="assets/images/apr-diamond.png"></button>
+              <button id="gem_3" class="btn gem" ><img src="assets/images/aug-peridot.png"></button>
+          </row>
 
           <row>
             <div class="col-md-6" id="winningTotalDiv">
                 <p>Jackpot</p>
-                <p id="winningDollars"></p>
+                <p id="winningDollars">$0</p>
             </div>
             <div class="col-md-6 normalColor" id="runningTotalDiv" >
                 <p>Your Total</p>
-                <p id="runningDollars"></p>
+                <p id="runningDollars">$0</p>
             </div>
         </row>
       </div>

@@ -1,151 +1,182 @@
 //  game.js 
 //  Jan Jakubowski 15.apr.19
-//  functions
-//      new game
-// 
-//      change score
-//      displaymessge
-//
-//  splash instructions
-//  create scoreboard
-//  play game
-//      generate random winning number
-//      generate random values & assign to cards
-//      
-//      update scoreboard
-// 
-// the "gems" are going to be objects
 // 
 // ////////////////////////////////////////////////
 // ///// Global Variables 
-var gems = [];
-var gemValue = 0;
-var startNextGame = false;
-var images = ["feb-amethyst","mar-aquamarine","apr-diamond","aug-peridot"];
-// var cannedMsgs = [ " ",
-//     "Winner, Winner, Chicken Dinner",
-//     "Your Total is Over, You L-O-S-E!",
-//     "Welcome Bienvenue Witamy", 
-//     "Click on Start New Game",
-//     "Click on Start New Game or Play Over"
-// ]; 
-// function gemCard(x,y,z) {
-//     this.name = x;
-//     this.value = y;
-//     this.image = z;
-// }
-// ////////////////////////////////////////////////
-// ///// Scoreboard 
-const scoreboard = {
-    wins : 0,
-    losses : 0,
-    // msg1 : "",
-    // msg2 : "",
-
-    addWin : function () { this.wins++; $("#W").text(this.wins);},
-    addLoss : function  () { $("#L").text(this.losses++);},
-    changeMsg1 : function (choice) { $("#userMsg1").text(choice);},
-    changeMsg2 : function (choice) { $("#userMsg2").text(choice);},
-    isWinner : function () {
-        this.addWin (); this.changeMsg1(cannedMsg.winner); this.changeMsg2(cannedMsg.nextGame);
-    },
-    isLoser : function () {
-        this.addLoss (); this.changeMsg1(cannedMsg.loser); this.changeMsg2(cannedMsg.nextGame);
-    }
-};
-
-
-// ////////////////////////////////////////////////
-// ///// Gameboard - aka bag of gems
+var gameOver;
+var startNewGame;
+var isWinner;
+const images = ["feb-amethyst","mar-aquamarine","apr-diamond","aug-peridot"];
 const cannedMsg = {
     pickNext : "Pick a birthstone until",
     untilOver : "your total is equal to the jackpot",
     winner: "Winner, Winner, Chicken Dinner",
     loser: "Your Total is Over, You L-O-S-E!",
-    welcome : "Welcome Bienvenue Witamy", 
-    newGame : "Click on Start New Game",
-    nextGame : "Click on Start New Game or Play Over"
+    welcome : "Welcome ~ Bienvenue ~ Witamy", 
+    newGame : "Click on <Start New Game>",
+    nextGame : "Click on <Start New Game> or <Play Over>"
 }; 
 
 // ////////////////////////////////////////////////
-// ///// Gameboard - aka bag of gems
-const gameboard = {
-    winningTotal : 0,
-    runningTotal : 0
+// ///// scoreboard Object & Methods
+
+const scoreboard = {
+    wins : 0,
+    losses : 0,
+    addWin : function () { this.wins++; $("#W").text(this.wins);},
+    addLoss : function  () { this.losses++; $("#L").text(this.losses);},
+    changeMsg1 : function (choice) { $("#userMsg1").text(choice);},
+    changeMsg2 : function (choice) { $("#userMsg2").text(choice);},
+    isWinner : function () {
+        this.addWin (); 
+        this.changeMsg1(cannedMsg.winner); 
+        this.changeMsg2(cannedMsg.nextGame);
+        $('#newGame').prop("disabled", false); 
+        gameOver =true; 
+        isWinner = true;
+    },
+    isLoser : function () {
+        this.addLoss (); 
+        this.changeMsg1(cannedMsg.loser); 
+        this.changeMsg2(cannedMsg.nextGame);
+        $('#newGame').prop("disabled", false); 
+        gameOver =true; 
+        isWinner = false;
+    }
 };
 
+// ////////////////////////////////////////////////
+// ///// gameboard object and methods
 
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-// const scoreboardDiv = $(".scoreboard");
-// var cardGemValue = -1;
-// var image = "#000";
-// function getNumber () { return (Math.floor(Math.random() * images.length)) };
-// n.toLocaleString()
+const gameboard = {
+    winningTotal : 0,
+    runningTotal : 0,
+    displayWinning : function () {
+        $("#winningDollars").text((this.winningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}))
+    },   
+    displayRunning : function () {
+        $("#runningDollars").text((this.runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}))
+    }
+};
+
+// ////////////////////////////////////////////////
+// ///// functions
 
 function nextGame () {
     for (i=0; i < 4; i++) {
-        var gemButton = $("<button>");
-        gemButton.attr("data-x", Math.floor((Math.random()*12) + 1));
-        gemButton.addClass("gem-button gem gem-button-color");
-        gemButton.html('<img src="assets/images/' + images[i] + '.png">')
-        // gemButton.css("background-color",images[Math.floor(Math.random() * images.length)]);
-        gemButton.css("background-color","#f0f0f0");
-        $("#gemCards").append(gemButton);
-        // console.log("name:"+gems[i].name +" | value:" +gems[i].value +" | image:"+gems[i].image);
+        switch (i) {
+            case 0 : $("#gem_0").attr("data-value", Math.floor((Math.random()*12) + 1)); 
+                console.log(images[i] + " | value: " + $("#gem_0").attr("data-value"));
+                break;
+            case 1 : $("#gem_1").attr("data-value", Math.floor((Math.random()*12) + 1)); 
+                console.log(images[i] + " | value: " + $("#gem_1").attr("data-value"));
+                break;
+            case 2 : $("#gem_2").attr("data-value", Math.floor((Math.random()*12) + 1)); 
+                console.log(images[i] + " | value: " + $("#gem_2").attr("data-value"));
+                break;
+            case 3 : $("#gem_3").attr("data-value", Math.floor((Math.random()*12) + 1)); 
+                console.log(images[i] + " | value: " + $("#gem_3").attr("data-value"));
+                break;
+        }
     }
     
     gameboard.winningTotal = Math.floor(Math.random()*101) + 19;
-    console.log("winningDollars: " + (gameboard.winningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
-    $("#winningDollars").text((gameboard.winningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
+    gameboard.displayWinning ();
     gameboard.runningTotal = 0;
-    $("#runningDollars").text((gameboard.runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
-    startNewGame = false;
-    
-}
-// nextGame ();
-
-    nextGame();
-    startNextGame = false;
-    var gameOver = false;
+    gameboard.displayRunning ();
+    // $("#runningDollars").text((gameboard.runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
+    console.log("winningTotal: " + gameboard.winningTotal + " | runningTotal:" + gameboard.runningTotal);
     scoreboard.changeMsg1(cannedMsg.pickNext);
     scoreboard.changeMsg2(cannedMsg.untilOver);
+    if (isWinner) {
+        $("#runningTotalDiv").removeClass("winnerColor");
+    } else {
+        $("#runningTotalDiv").removeClass("loserColor");
+    }
+    $("#runningTotalDiv").addClass("normalColor");
+    $('#newGame').prop("disabled", true);
+    $('#playOver').prop("disabled", false);
+    isWinner = null;
+    startNewGame = false;
+    gameOver = false;
+}
+
+function replayGame () {
+    gameboard.runningTotal = 0;
+    gameboard.displayRunning ();
+    // $("#runningDollars").text((gameboard.runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
     console.log("winningTotal: " + gameboard.winningTotal + " | runningTotal:" + gameboard.runningTotal);
+    scoreboard.changeMsg1(cannedMsg.pickNext);
+    scoreboard.changeMsg2(cannedMsg.untilOver);
+    if (isWinner) {
+        $("#runningTotalDiv").removeClass("winnerColor");
+    } else {
+        $("#runningTotalDiv").removeClass("loserColor");
+    }
+    $("#runningTotalDiv").addClass("normalColor");
+    $('#newGame').prop("disabled", false);
+    isWinner = null;
+    startNewGame = false;
+    gameOver = false;
+}
+
+// /////////////////////////////////////////////
+// WELCOME - first time through
+
+    var firstGame = true;
+    $('#newGame').prop("disabled", false);
+    $('#playOver').prop("disabled", true);
+    scoreboard.changeMsg1(cannedMsg.welcome);
+    scoreboard.changeMsg2(cannedMsg.newGame);
+
+// /////////////////////////////////////////////
+// PLAY THE GAME
+
 $(document).ready(function() {
 
     $("#newGame").on("click", function () {
-        console.log("start clicked");
+        console.log("***** start clicked");
+        if ((firstGame) || (gameOver)) {
+            nextGame();
+            
+        }
     });
 
-    // 
+    $("#playOver").on("click", function () { 
+        console.log("***** play over clicked");
+        replayGame();
+    });
+
     $(".gem").on("click", function() {
 
         if (!gameOver) {
 
-            gemValue = $(this).attr("data-x");
-            console.log("gemValue: " + gemValue);
+            // var gemValue = $(this).attr("data-value");
+            // console.log("gemValue: " + gemValue);
 
-            gameboard.runningTotal += parseInt(gemValue);
-            $("#runningDollars").text((gameboard.runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
+            gameboard.runningTotal += parseInt($(this).attr("data-value"));
+            gameboard.displayRunning ();
+            // $("#runningDollars").text((gameboard.runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
             console.log("runningTotal: " + gameboard.runningTotal);
 
             if (gameboard.runningTotal == gameboard.winningTotal)  {
-                console.log("winner, winner, chicken dinner");
+                console.log("----> winner, winner, chicken dinner");
                 scoreboard.isWinner();
                 // gameboard.isWinner();
                 $("#runningTotalDiv").removeClass("normalColor");
                 $("#runningTotalDiv").addClass("winnerColor");
+                isWinner = true;
                 gameOver = true;
                 return;
             }
 
             if (gameboard.runningTotal >= gameboard.winningTotal) {
-                console.log("loser");
+                console.log("----> loser");
                 scoreboard.isLoser();
                 // gameboard.isLoser();
                 $("#runningTotalDiv").removeClass("normalColor");
                 $("#runningTotalDiv").addClass("loserColor");
+                isWinner = false;
                 gameOver = true;
                 return;
             }
