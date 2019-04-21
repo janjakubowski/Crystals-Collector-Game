@@ -19,6 +19,8 @@ The three components of _html, css, JavaScript_ are straight forward.
 3. 
 
 ###### Versions
+- 1.0 20.apr.19 PM 
+    - html & css updates to line up elements and use muted colors
 - 0.4 18.apr.19 midnite 
     - js: start/play again added, gems are hardcoded, no longer dynamic except      for value 
     - all html, css & logic complete, ready for UAT

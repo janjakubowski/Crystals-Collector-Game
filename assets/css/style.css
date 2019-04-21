@@ -1,5 +1,5 @@
 /* style.css : stylesheet for crystals collecting game*/
-/* Jan Jakubowski - 15.apr.19            */
+/* Jan Jakubowski - week 4 - Homework                 */
 @font-face {
   src: url(../fonts/scoreboard.ttf);
   font-family: 'scoreboard font';
@@ -11,10 +11,7 @@
 }
 
 h1, h2, h3, h4 {
-  /* font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; */
   font-family: 'Luckiest Guy', cursive;
-  /* font-display: 'Russo One', sans-serif; */
-  /* font-weight: bold; */
   text-align: center;
 }
 
@@ -25,13 +22,12 @@ body, html {
 
 body {
   background-color: #FFE8D2;
-  /* background: url(../images/clouds.jpeg) bottom; */
-  /* background-size: cover; */
 }
 
 #ccgContainer {
   width: 80%;
   margin: 0 auto;
+  background-color: #FFE8D2;
 }
 
 #nameOfTheGame {
@@ -48,14 +44,12 @@ body {
   width: 20%;
   display: inline-block;
   vertical-align: top;
-  /* border: 5px solid darkslateblue; */
   margin: 2%;
   padding: 20px;
   font-size: 24px;
 }
 
 #theScore {
-  /* width: 100%; */
   background-color: #333333;
   color: yellow;
 }
@@ -73,12 +67,7 @@ body {
   line-height: 85px;
 }
 
-/* button > span {
-  font-size: 2.5rem;
-} */
-
 #gameBoard {
-  /* width: 85vw; */
   align-items: center;
 }
 
@@ -90,29 +79,32 @@ body {
   border: 5px solid darkslateblue;
   margin: 2%;
   padding: 20px;
+  position: relative;
 }
 
 .gem:hover {
   border: 5px solid red;
 }
-
-/* .gem { */
-  /* width: 266px; */
-  /* height: 200px; */
-  /* border-style: solid; */
-  /* padding: 2px; */
-  /* float: left; */
-  /* margin: 2px; */
-/* } */
+  
+.gem-img-caption .gem-img-top {
+  z-index: 0;
+}
+    
+.gem-img-caption .gem-text {
+  text-align: center;
+  top: 0;
+  position: absolute;
+  z-index: 1;
+  color: #111111;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
 
 #winningTotalDiv {
   background-color: #ccc;
   color: darkslateblue;
   border-radius: 25px;
-  /* background: #73AD21; */
   padding: 20px; 
-  /* width: 50vw;
-  height: 300px; */
   font-size: 60px;
   line-height: 72px;
   text-align: center;
@@ -121,10 +113,7 @@ body {
 #runningTotalDiv {
   border: black, 20px, solid;
   border-radius: 25px;
-  /* background: #73AD21; */
   padding: 20px; 
-  /* width: 50vw;
-  height: 300px; */
   font-size: 60px;
   line-height: 72px;
   text-align: center;
@@ -144,26 +133,5 @@ body {
   color: #eee;
   background-color: red;
 }
-
-
-
-/* #tester > div {
-  width: 20%;
-  display: inline-block;
-  vertical-align: top;
-  border: 5px solid red;
-  margin: 2%;
-  padding: 20px;
-} */
-
-/* .totals-div {
-  border-radius: 25px; */
-  /* background: #73AD21; */
-  /* padding: 20px; 
-  width: 200px;
-  height: 150px;
-  font-size: 100px;
-  line-height: 112px;
-} */
 
 /* END OF FILE */
