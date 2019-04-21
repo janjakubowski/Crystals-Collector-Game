@@ -13,7 +13,8 @@
 h1, h2, h3, h4 {
   /* font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; */
   font-family: 'Luckiest Guy', cursive;
-  font-weight: bold;
+  /* font-display: 'Russo One', sans-serif; */
+  /* font-weight: bold; */
   text-align: center;
 }
 
@@ -23,13 +24,14 @@ body, html {
 }
 
 body {
-  /* background-color: #B3C7E8; */
-  background: url(../images/clouds.jpeg) bottom;
-  background-size: cover;
+  background-color: #FFE8D2;
+  /* background: url(../images/clouds.jpeg) bottom; */
+  /* background-size: cover; */
 }
 
-.container {
-  min-width: 50vw;
+#ccgContainer {
+  width: 80%;
+  margin: 0 auto;
 }
 
 #nameOfTheGame {
@@ -38,11 +40,24 @@ body {
 
 .info {
   font-family: 'Russo One', sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+#newGame, #playOver {
+  width: 20%;
+  display: inline-block;
+  vertical-align: top;
+  /* border: 5px solid darkslateblue; */
+  margin: 2%;
+  padding: 20px;
+  font-size: 24px;
 }
 
 #theScore {
+  /* width: 100%; */
   background-color: #333333;
-  color: orangered;
+  color: yellow;
 }
 
 .scoreboard-element {
@@ -58,18 +73,37 @@ body {
   line-height: 85px;
 }
 
-button > span {
+/* button > span {
   font-size: 2.5rem;
+} */
+
+#gameBoard {
+  /* width: 85vw; */
+  align-items: center;
 }
 
 .gem {
-  width: 266px;
-  height: 200px;
-  border-style: solid;
-  padding: 2px;
-  float: left;
-  margin: 2px;
+  width: 20%;
+  display: inline-block;
+  vertical-align: top;
+  background-color: #FFB581;
+  border: 5px solid darkslateblue;
+  margin: 2%;
+  padding: 20px;
 }
+
+.gem:hover {
+  border: 5px solid red;
+}
+
+/* .gem { */
+  /* width: 266px; */
+  /* height: 200px; */
+  /* border-style: solid; */
+  /* padding: 2px; */
+  /* float: left; */
+  /* margin: 2px; */
+/* } */
 
 #winningTotalDiv {
   background-color: #ccc;
@@ -81,10 +115,11 @@ button > span {
   height: 300px; */
   font-size: 60px;
   line-height: 72px;
+  text-align: center;
 }
 
 #runningTotalDiv {
-  border: #ccc, 20px, solid;
+  border: black, 20px, solid;
   border-radius: 25px;
   /* background: #73AD21; */
   padding: 20px; 
@@ -92,6 +127,7 @@ button > span {
   height: 300px; */
   font-size: 60px;
   line-height: 72px;
+  text-align: center;
 }
 
 .normalColor {
@@ -108,6 +144,17 @@ button > span {
   color: #eee;
   background-color: red;
 }
+
+
+
+/* #tester > div {
+  width: 20%;
+  display: inline-block;
+  vertical-align: top;
+  border: 5px solid red;
+  margin: 2%;
+  padding: 20px;
+} */
 
 /* .totals-div {
   border-radius: 25px; */

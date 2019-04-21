@@ -24,32 +24,40 @@
 
   <body>
 
-    <div class="container">
+    <div id="ccgContainer" class="heigt=100vh">
 
       <h1 id="nameOfTheGame">Birthstone Collecting Game</h1>
 
       <!-- Welcome to the game -->
       <div id="theWelcome" class="row">
           <p class="info">
-            Welcome to Jan's Homework #4
-            This is the Crystal Collecting Game.
-            Your challenge is to collect birthstones
-            until the value you have collected of the stones 
-            exactly match the Jackpot
-            match the Jackpot
-            Pick A Birthstone To Begin
+            Welcome to a version of the Crystal Collecting Game.
+            The objective is to collect birthstones, which have 
+            a random value between $10,000 and $120,000, to add up to the
+            the value of the <strong>JACKPOT</strong>. If at any time, you would like to play with the same
+            Jackpot and birthstone values, click on *Play Over*.
+            
           </p>
       
       </div>
 
-      <div>
-        <button id="newGame" type="button" class="btn btn-success btn-lg btn-block">
+      <!-- <row>
+        <button id="newGame" type="button" class="col-md-6 btn btn-success btn-lg btn-block">
           Start New Game
         </button>
-        <button id="playOver" type="button" class="btn btn-primary btn-lg btn-block">
+        <button id="playOver" type="button" class="col-md-6 btn btn-primary btn-lg btn-block">
             Play Over
         <button>
-      </div>
+      </row> -->
+
+      <div id=buttonContainer>
+          <div id="newGame" class="btn btn-success ctrl-button">
+            Start New Game
+          </div>
+          <button id="playOver" class="btn btn-primary btn-lg">
+            Play Over
+          </button>
+        </div>
 
       <div class="row" id="theScore">
           <div class="col-md-6" id="wins-txt">
@@ -72,12 +80,18 @@
           <!-- <row> -->
           <!-- <div id="gemCards" class="btn-group"></div>  -->
           <!-- </row> -->
-          <row id="gameBoard">
-              <button id="gem_0" class="btn gem" ><img src="assets/images/feb-amethyst.png"></button>
-              <button id="gem_1" class="btn gem" ><img src="assets/images/mar-aquamarine.png"></button>
-              <button id="gem_2" class="btn gem" ><img src="assets/images/apr-diamond.png"></button>
-              <button id="gem_3" class="btn gem" ><img src="assets/images/aug-peridot.png"></button>
-          </row>
+          <div id="gameBoard">
+              <div id="gem_0" class="btn gem" ><img src="assets/images/feb-amethyst.png"></div>
+              <!-- <div id="gem_0">
+                  <img class="btn gem" src="assets/images/feb-amethyst.png">
+                  <div id="gem-label">
+                    <h3>February</h3>
+                  </div>
+              </div> -->
+              <div id="gem_1" class="btn gem" ><img src="assets/images/mar-aquamarine.png"></div>
+              <div id="gem_2" class="btn gem" ><img src="assets/images/apr-diamond.png"></div>
+              <div id="gem_3" class="btn gem" ><img src="assets/images/aug-peridot.png"></div>
+          </div>
 
           <row>
             <div class="col-md-6" id="winningTotalDiv">
@@ -91,7 +105,16 @@
         </row>
       </div>
 
+      <!-- <div id=tester>
+          <div>A</div>
+          <div>B</div>
+          <div>C</div>
+          <div>D</div>
+        </div> -->
+
     </div>
+
+    
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script type="text/javascript" src="assets/javascript/game.js"></script>

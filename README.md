@@ -1,13 +1,21 @@
 # Crystals-Collector-Game
 Week 4 - Homework - Collect Crystals Worth a Random Value to Equal the Desired Total to Win
 
+## Hints To Play
+_Note:_ It may be impossible to win, especially if the jackot number is odd and all the birthston values are even.
+1. All values are multipled by 10,000 to display. The gem values are between 1 and 12, it is possible to have duplicates, and the jackpot is between 19 and 120.
+0. *Cheat:* Open the console log to see all the values.  
+
 ## Assignment
+
+
 
 ## Challenges
 The three components of _html, css, JavaScript_ are straight forward. 
 1. Using jQuery rather than straight JavaScript
 2. Represent the crystals using objects and methods. (not done)
     a. Randomly select 4 birthstones with no dups (not done)
+    b. Instead the scoreboard and the gameboard are objects.
 3. 
 
 ###### Versions
