@@ -44,7 +44,7 @@ body {
   width: 20%;
   display: inline-block;
   vertical-align: top;
-  margin: 2%;
+  margin: 10px auto 0 auto;
   padding: 20px;
   font-size: 24px;
 }
@@ -52,14 +52,26 @@ body {
 #theScore {
   background-color: #333333;
   color: yellow;
+  margin: 0;
+  padding: 25px;
 }
 
 .scoreboard-element {
   font-family: 'scoreboard font';
   font-size: 40px;
-  line-height: 50px;
+  line-height: 55px;
   font-weight: bold;
   text-align: center;
+}
+
+.sb-element-w {
+  font-size: 60px;
+  color: lawngreen;
+}
+
+.sb-element-l {
+  font-size: 60px;
+  color: orangered;
 }
 
 #W, #L {
@@ -73,6 +85,7 @@ body {
 
 .gem {
   width: 20%;
+  height: 250px;
   display: inline-block;
   vertical-align: top;
   background-color: #FFB581;
@@ -86,18 +99,25 @@ body {
   border: 5px solid red;
 }
   
-.gem-img-caption .gem-img-top {
+/* .gem-img-caption .gem-img-top {
   z-index: 0;
-}
+} */
     
 .gem-img-caption .gem-text {
-  text-align: center;
+  /* text-align: center; */
   top: 0;
   position: absolute;
   z-index: 1;
   color: #111111;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   font-weight: bold;
+}
+
+.gem-img-top {
+  top: 25%;
+  position: absolute;
+  z-index: 0;
+  left: 10%;
 }
 
 #winningTotalDiv {

@@ -2,13 +2,35 @@
 Week 4 - Homework - Collect Crystals Worth a Random Value to Equal the Desired Total to Win
 
 ## Hints To Play
-_Note:_ It may be impossible to win, especially if the jackot number is odd and all the birthston values are even.
+_Note:_ It may be impossible to win, especially if the jackot number is odd and all the birthstone values are even.
 1. All values are multipled by 10,000 to display. The gem values are between 1 and 12, it is possible to have duplicates, and the jackpot is between 19 and 120.
 0. *Cheat:* Open the console log to see all the values.  
 
 ## Assignment
+The player will have to guess the answer, just like in Word Guess. This time, though, the player will guess with numbers instead of letters. 
 
+Here's how the app works:
+   * There will be four crystals displayed as buttons on the page.
+   * The player will be shown a random number at the start of the game.
+   * When the player clicks on a crystal, it will add a specific amount of points to the player's total score. 
+     - Your game will hide this amount until the player clicks a crystal.
+     - When they do click one, update the player's score counter.
+   * The player wins if their total score matches the random number from the beginning of the game.
+   * The player loses if their score goes above the random number.
+   * The game restarts whenever the player wins or loses.
+     - When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero.
+   * The app should show the number of games the player wins and loses. To that end, do not refresh the page as a means to restart the game.
 
+#####  Game design notes
+
+* The random number shown at the start of the game should be between 19 - 120.
+* Each crystal should have a random hidden value between 1 - 12.
+
+##### My Personalizations 
+
+* Using dollar values equal to random number x 10,000 and crystal value x 10,000
+* Allow player to replay game with same jackpot and gem values
+* Imported a font, the scoreboard font
 
 ## Challenges
 The three components of _html, css, JavaScript_ are straight forward. 

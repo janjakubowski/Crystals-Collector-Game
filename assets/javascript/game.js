@@ -14,7 +14,7 @@ const cannedMsg = {
     loser: "Your Total is Over, You L-O-S-E!",
     welcome : "Welcome ~ Bienvenue ~ Witamy", 
     newGame : "Click on <Start New Game>",
-    nextGame : "Click on <Start New Game> or <Play Over>"
+    nextGame : "<Start New Game> or <Play Over>"
 }; 
 
 // ////////////////////////////////////////////////
@@ -29,7 +29,8 @@ const scoreboard = {
     changeMsg2 : function (choice) { $("#userMsg2").text(choice);},
     isWinner : function () {
         this.addWin (); 
-        this.changeMsg1(cannedMsg.winner); 
+        this.changeMsg1(cannedMsg.winner);
+        $("#userMsg1").addClass("sb-element-w");
         this.changeMsg2(cannedMsg.nextGame);
         $('#newGame').prop("disabled", false); 
         gameOver =true; 
@@ -38,6 +39,7 @@ const scoreboard = {
     isLoser : function () {
         this.addLoss (); 
         this.changeMsg1(cannedMsg.loser); 
+        $("#userMsg1").addClass("sb-element-l");
         this.changeMsg2(cannedMsg.nextGame);
         $('#newGame').prop("disabled", false); 
         gameOver =true; 
@@ -52,10 +54,12 @@ const gameboard = {
     winningTotal : 0,
     runningTotal : 0,
     displayWinning : function () {
-        $("#winningDollars").text((this.winningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}))
+        $("#winningDollars").text((this.winningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
+        $("#userMsg1").removeClass("sb-element-w");
     },   
     displayRunning : function () {
-        $("#runningDollars").text((this.runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}))
+        $("#runningDollars").text((this.runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
+        $("#userMsg1").removeClass("sb-element-l");
     }
 };
 
@@ -90,8 +94,10 @@ function nextGame () {
     scoreboard.changeMsg2(cannedMsg.untilOver);
     if (isWinner) {
         $("#runningTotalDiv").removeClass("winnerColor");
+        $("#userMsg1").removeClass("sb-element-w");
     } else {
         $("#runningTotalDiv").removeClass("loserColor");
+        $("#userMsg1").removeClass("sb-element-l");
     }
     $("#runningTotalDiv").addClass("normalColor");
     $('#newGame').prop("disabled", true);
