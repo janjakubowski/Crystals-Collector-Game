@@ -1,12 +1,11 @@
-//  game.js 
-//  Jan Jakubowski 15.apr.19
-// 
-// ////////////////////////////////////////////////
-// ///// Global Variables 
+//  game.js - Jan Jakubowski 
+// //////////////////////////// Global Variables 
 var gameOver;
 var startNewGame;
 var isWinner;
-const images = ["feb-amethyst","mar-aquamarine","apr-diamond","aug-peridot"];
+var months = [];
+var currentGame = [];
+const birthstones = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
 const cannedMsg = {
     pickNext : "Pick a birthstone until",
     untilOver : "your total is equal to the jackpot",
@@ -47,9 +46,7 @@ const scoreboard = {
     }
 };
 
-// ////////////////////////////////////////////////
-// ///// gameboard object and methods
-
+// //////////////////////////////// gameboard object and methods
 const gameboard = {
     winningTotal : 0,
     runningTotal : 0,
@@ -63,33 +60,40 @@ const gameboard = {
     }
 };
 
-// ////////////////////////////////////////////////
-// ///// functions
+// ////////// f u n c t i o n s /////////////
+
+function shuffle () {
+    for (var i=0; i<4; i++) {
+        x = Math.floor(Math.random()*months.length);
+        currentGame[i] = months[x];
+        months.splice(x,1);
+    };
+    console.log("months: " + months + " | currentGame: " + currentGame);
+}
+
+function resetGame () {
+    $("#gems").empty();
+    for (var i=0; i<4; i++) { months.push(currentGame.pop()); };
+}
 
 function nextGame () {
+    shuffle();
+
     for (i=0; i < 4; i++) {
-        switch (i) {
-            case 0 : $("#gem_0").attr("data-value", Math.floor((Math.random()*12) + 1)); 
-                console.log(images[i] + " | value: " + $("#gem_0").attr("data-value"));
-                break;
-            case 1 : $("#gem_1").attr("data-value", Math.floor((Math.random()*12) + 1)); 
-                console.log(images[i] + " | value: " + $("#gem_1").attr("data-value"));
-                break;
-            case 2 : $("#gem_2").attr("data-value", Math.floor((Math.random()*12) + 1)); 
-                console.log(images[i] + " | value: " + $("#gem_2").attr("data-value"));
-                break;
-            case 3 : $("#gem_3").attr("data-value", Math.floor((Math.random()*12) + 1)); 
-                console.log(images[i] + " | value: " + $("#gem_3").attr("data-value"));
-                break;
-        }
+        var stoneImage = $("<img>");
+        stoneImage.addClass("gem");
+        var temp = "assets/images/" + birthstones[currentGame[i]] + ".png";
+        stoneImage.attr("src", temp);
+        stoneImage.attr("data-stonevalue", (Math.floor(Math.random()*12) + 1));
+        $("#gems").append(stoneImage);
+        console.log("stone: " + birthstones[currentGame[i]] + " | value: " + stoneImage.attr("data-stonevalue"));
     }
     
     gameboard.winningTotal = Math.floor(Math.random()*101) + 19;
     gameboard.displayWinning ();
     gameboard.runningTotal = 0;
     gameboard.displayRunning ();
-    // $("#runningDollars").text((gameboard.runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
-    console.log("winningTotal: " + gameboard.winningTotal + " | runningTotal:" + gameboard.runningTotal);
+    console.log("winningTotal: " + gameboard.winningTotal);
     scoreboard.changeMsg1(cannedMsg.pickNext);
     scoreboard.changeMsg2(cannedMsg.untilOver);
     if (isWinner) {
@@ -99,52 +103,56 @@ function nextGame () {
         $("#runningTotalDiv").removeClass("loserColor");
         $("#userMsg1").removeClass("sb-element-l");
     }
-    $("#runningTotalDiv").addClass("normalColor");
+    // $("#runningTotalDiv").addClass("normalColor");
     $('#newGame').prop("disabled", true);
     $('#playOver').prop("disabled", false);
     isWinner = null;
     startNewGame = false;
     gameOver = false;
+    // $(document).on("click", "img.gem", betterWork);
 }
 
 function replayGame () {
     gameboard.runningTotal = 0;
     gameboard.displayRunning ();
-    // $("#runningDollars").text((gameboard.runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
-    console.log("winningTotal: " + gameboard.winningTotal + " | runningTotal:" + gameboard.runningTotal);
+    console.log("winningTotal: " + gameboard.winningTotal);
     scoreboard.changeMsg1(cannedMsg.pickNext);
     scoreboard.changeMsg2(cannedMsg.untilOver);
     if (isWinner) {
         $("#runningTotalDiv").removeClass("winnerColor");
+        $("#userMsg1").removeClass("sb-element-w");
     } else {
         $("#runningTotalDiv").removeClass("loserColor");
+        $("#userMsg1").removeClass("sb-element-l")
     }
     $("#runningTotalDiv").addClass("normalColor");
-    $('#newGame').prop("disabled", false);
+    $('#newGame').prop("disabled", true);
     isWinner = null;
     startNewGame = false;
     gameOver = false;
 }
 
-// /////////////////////////////////////////////
-// WELCOME - first time through
+// ///////////////////////////////  WELCOME - first time through
 
-    var firstGame = true;
-    $('#newGame').prop("disabled", false);
-    $('#playOver').prop("disabled", true);
-    scoreboard.changeMsg1(cannedMsg.welcome);
-    scoreboard.changeMsg2(cannedMsg.newGame);
+var firstGame = true;
+$('#newGame').prop("disabled", false);
+$('#playOver').prop("disabled", true);
+scoreboard.changeMsg1(cannedMsg.welcome);
+scoreboard.changeMsg2(cannedMsg.newGame);
+for (var i=0; i<12; i++) { months[i] = i; };
 
-// /////////////////////////////////////////////
-// PLAY THE GAME
+// /////////////////////////////   PLAY THE GAME
 
 $(document).ready(function() {
 
     $("#newGame").on("click", function () {
         console.log("***** start clicked");
-        if ((firstGame) || (gameOver)) {
+        if (firstGame) {
             nextGame();
-            
+            firstGame = false;
+        } else if (gameOver) {
+            resetGame();
+            nextGame();
         }
     });
 
@@ -153,23 +161,17 @@ $(document).ready(function() {
         replayGame();
     });
 
-    $(".gem").on("click", function() {
+    $(document).on("click", "img.gem", function () {
+    // $(".gem").on("click", function() {
 
         if (!gameOver) {
-
-            // var gemValue = $(this).attr("data-value");
-            // console.log("gemValue: " + gemValue);
-
-            gameboard.runningTotal += parseInt($(this).attr("data-value"));
-            gameboard.displayRunning ();
-            // $("#runningDollars").text((gameboard.runningTotal*10000).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: '0'}));
-            console.log("runningTotal: " + gameboard.runningTotal);
+            gameboard.runningTotal += parseInt($(this).attr("data-stonevalue"));
+            gameboard.displayRunning();
+            // console.log("runningTotal: " + gameboard.runningTotal);
 
             if (gameboard.runningTotal == gameboard.winningTotal)  {
-                console.log("----> winner, winner, chicken dinner");
+                // console.log("----> winner, winner, chicken dinner");
                 scoreboard.isWinner();
-                // gameboard.isWinner();
-                $("#runningTotalDiv").removeClass("normalColor");
                 $("#runningTotalDiv").addClass("winnerColor");
                 isWinner = true;
                 gameOver = true;
@@ -177,10 +179,8 @@ $(document).ready(function() {
             }
 
             if (gameboard.runningTotal >= gameboard.winningTotal) {
-                console.log("----> loser");
+                // console.log("----> loser");
                 scoreboard.isLoser();
-                // gameboard.isLoser();
-                $("#runningTotalDiv").removeClass("normalColor");
                 $("#runningTotalDiv").addClass("loserColor");
                 isWinner = false;
                 gameOver = true;

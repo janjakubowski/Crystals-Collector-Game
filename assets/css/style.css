@@ -58,8 +58,8 @@ body {
 
 .scoreboard-element {
   font-family: 'scoreboard font';
-  font-size: 40px;
-  line-height: 55px;
+  font-size: 32px;
+  line-height: 44px;
   font-weight: bold;
   text-align: center;
 }
@@ -81,6 +81,11 @@ body {
 
 #gameBoard {
   align-items: center;
+}
+
+.crystal-image {
+  width: 20%;
+  height: 200px;
 }
 
 .gem {
@@ -137,12 +142,13 @@ body {
   font-size: 60px;
   line-height: 72px;
   text-align: center;
-}
-
-.normalColor {
   color: #ccc;
   background-color: darkslateblue;
 }
+
+/* .normalColor {
+  
+} */
 
 .winnerColor {
   color: #111;
